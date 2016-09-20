@@ -37,13 +37,13 @@ def generate_request
   @user_query = params[:text]
 
   if @user_query.length == 0
-    uri = "https://api.forecast.io/forecast/#{ENV["FORECAST_API_KEY"]}/#{ENV["DEFAULT_LATLON"]}"
+    uri = "https://api.darksky.net/forecast/#{ENV["FORECAST_API_KEY"]}/#{ENV["DEFAULT_LATLON"]}"
   else
     locresults = Geocoder.coordinates("#{@user_query}")
     lat = locresults[0]
     lng = locresults[1]
 
-    uri = "https://api.forecast.io/forecast/#{ENV["FORECAST_API_KEY"]}/#{lat},#{lng}"
+    uri = "https://api.darksky.net/forecast/#{ENV["FORECAST_API_KEY"]}/#{lat},#{lng}"
   end
 
   request = HTTParty.get(uri)
